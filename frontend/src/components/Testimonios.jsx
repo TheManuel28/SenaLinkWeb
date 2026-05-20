@@ -4,7 +4,7 @@ const Testimonios = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("/api/testimonios")
+    fetch(`${import.meta.env.VITE_API_URL}/api/testimonios`)
       .then((r) => r.json())
       .then(setItems)
       .catch(() => {});

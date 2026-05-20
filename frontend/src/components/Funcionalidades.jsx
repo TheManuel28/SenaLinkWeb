@@ -5,7 +5,7 @@ const Funcionalidades = () => {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    fetch("/api/funcionalidades")
+    fetch(`${import.meta.env.VITE_API_URL}/api/funcionalidades`)
       .then((r) => r.json())
       .then((data) => { setFuncs(data); setCargando(false); })
       .catch(() => setCargando(false));
