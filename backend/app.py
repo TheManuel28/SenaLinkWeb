@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_mail import Mail, Message # type: ignore
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://sena-link-web-o57j.vercel.app", "http://localhost:5173", "http://192.168.1.12:5173"])
 
 # ── Configuración de correo ──────────────────────────────────────────────────
 app.config['MAIL_SERVER']   = 'smtp.gmail.com'
