@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_mail import Mail, Message # type: ignore
 import os
+import threading
+import urllib.request
+import time
 app = Flask(__name__)
 CORS(app)
 
@@ -80,6 +83,16 @@ Mensaje:
 @app.route("/api/health")
 def health():
     return jsonify({"status": "ok"})
+
+def keep_alive():
+    while True:
+        time.sleep(840)  # cada 14 minutos
+        try:
+            urllib.request.urlopen("https://senalinkweb-production.up.railway.app/api/health")
+        except:
+            pass
+
+threading.Thread(target=keep_alive, daemon=True).start()
 
 # ── Inicio ───────────────────────────────────────────────────────────────────
 
